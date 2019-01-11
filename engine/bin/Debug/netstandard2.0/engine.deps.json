@@ -1,0 +1,83 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/",
+    "signature": "9417e11512e1000e90bfd01631bb9f43644da2dc"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/": {
+      "engine/1.0.0": {
+        "dependencies": {
+          "CNTK.CPUOnly": "2.6.0",
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "engine.dll": {}
+        }
+      },
+      "CNTK.CPUOnly/2.6.0": {
+        "dependencies": {
+          "CNTK.Deps.MKL": "2.6.0",
+          "CNTK.Deps.OpenCV.Zip": "2.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cntk.Core.Managed-2.6.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.0.0"
+          }
+        }
+      },
+      "CNTK.Deps.MKL/2.6.0": {},
+      "CNTK.Deps.OpenCV.Zip/2.6.0": {},
+      "Microsoft.NETCore.Platforms/1.1.0": {},
+      "NETStandard.Library/2.0.3": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      }
+    }
+  },
+  "libraries": {
+    "engine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CNTK.CPUOnly/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O/LruQQyaq60Op0UsALKpGtS5rEtf0qfcLo/SYGOa6pICClUHMj6oElzLjSSbsyEbPUi1NuUY9lRCfMaqss/Kg==",
+      "path": "cntk.cpuonly/2.6.0",
+      "hashPath": "cntk.cpuonly.2.6.0.nupkg.sha512"
+    },
+    "CNTK.Deps.MKL/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SgDsf2H76BQv03NowDfb/R97mU3oiqFZFA2A1Bf9fW8498jdB55WhpppQAZLslQPVd5wQUOKFxK40tmLJkDeBw==",
+      "path": "cntk.deps.mkl/2.6.0",
+      "hashPath": "cntk.deps.mkl.2.6.0.nupkg.sha512"
+    },
+    "CNTK.Deps.OpenCV.Zip/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jECZNg+3MpW9vQbqgB8oAdKg+SD9H/b+R8KGT8FpW2p324XxWMogceWZktUdIUsw30XKdRdhd+v6HodNN98DYw==",
+      "path": "cntk.deps.opencv.zip/2.6.0",
+      "hashPath": "cntk.deps.opencv.zip.2.6.0.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bLpT1f/SFlO1CzqXG12KnJzpZs6lv24uX2Rzi4Fmm0noJpNlnWRVryuO3yK18Ca04t/YHcO1e1Z0WDfjseqNzw==",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.2",
+    "signature": "01f5c1a109c5749aeccf08f4d45a755815d1c2c4"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.2": {
+      "console/1.0.0": {
+        "dependencies": {
+          "CNTK.CPUOnly": "2.6.0",
+          "engine": "1.0.0"
+        },
+        "runtime": {
+          "console.dll": {}
+        }
+      },
+      "CNTK.CPUOnly/2.6.0": {
+        "dependencies": {
+          "CNTK.Deps.MKL": "2.6.0",
+          "CNTK.Deps.OpenCV.Zip": "2.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cntk.Core.Managed-2.6.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.0.0"
+          }
+        }
+      },
+      "CNTK.Deps.MKL/2.6.0": {},
+      "CNTK.Deps.OpenCV.Zip/2.6.0": {},
+      "engine/1.0.0": {
+        "dependencies": {
+          "CNTK.CPUOnly": "2.6.0"
+        },
+        "runtime": {
+          "engine.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "console/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CNTK.CPUOnly/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O/LruQQyaq60Op0UsALKpGtS5rEtf0qfcLo/SYGOa6pICClUHMj6oElzLjSSbsyEbPUi1NuUY9lRCfMaqss/Kg==",
+      "path": "cntk.cpuonly/2.6.0",
+      "hashPath": "cntk.cpuonly.2.6.0.nupkg.sha512"
+    },
+    "CNTK.Deps.MKL/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SgDsf2H76BQv03NowDfb/R97mU3oiqFZFA2A1Bf9fW8498jdB55WhpppQAZLslQPVd5wQUOKFxK40tmLJkDeBw==",
+      "path": "cntk.deps.mkl/2.6.0",
+      "hashPath": "cntk.deps.mkl.2.6.0.nupkg.sha512"
+    },
+    "CNTK.Deps.OpenCV.Zip/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jECZNg+3MpW9vQbqgB8oAdKg+SD9H/b+R8KGT8FpW2p324XxWMogceWZktUdIUsw30XKdRdhd+v6HodNN98DYw==",
+      "path": "cntk.deps.opencv.zip/2.6.0",
+      "hashPath": "cntk.deps.opencv.zip.2.6.0.nupkg.sha512"
+    },
+    "engine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

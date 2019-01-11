@@ -1,0 +1,9 @@
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\bin\Debug\netstandard2.0\engine.deps.json
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\bin\Debug\netstandard2.0\engine.dll
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\bin\Debug\netstandard2.0\engine.pdb
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\obj\Debug\netstandard2.0\engine.csprojAssemblyReference.cache
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\obj\Debug\netstandard2.0\engine.csproj.CoreCompileInputs.cache
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\obj\Debug\netstandard2.0\engine.AssemblyInfoInputs.cache
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\obj\Debug\netstandard2.0\engine.AssemblyInfo.cs
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\obj\Debug\netstandard2.0\engine.dll
+C:\Users\ITRI\Documents\Programming\Csharp\Learning_CNTK\engine\obj\Debug\netstandard2.0\engine.pdb
