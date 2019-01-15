@@ -29,20 +29,44 @@ namespace console
             // out = C.softmax(z)
             var modelOut = CNTKLib.Softmax(model);
 
+            var feature_fromModel = modelOut.Arguments[0];
+            var label_fromModel = modelOut.Output;
+
             string featureStreamName = "features";
             string labelsStreamName = "labels";
 
-            var streamConfig = new StreamConfiguration[]{
+            var streamConfig = new StreamConfigurationVector{
                     new StreamConfiguration(featureStreamName, inputDim),
                     new StreamConfiguration(labelsStreamName, numOutputClasses)
             };
 
-            
-            var minibatchSource_train = MinibatchSource.TextFormatMinibatchSource(
-                        dataPath_train, streamConfig,
-                        MinibatchSource.InfinitelyRepeat, true);
+            var deserializerConfig_train = CNTKLib.CTFDeserializer(dataPath_train, streamConfig);
 
-            
+
+            //StreamConfigurationVector streams = new StreamConfigurationVector
+            //{
+            //new StreamConfiguration("feature", 100),
+            //new StreamConfiguration("label", 10)
+            //};
+            //var deserializerConfiguration = CNTKLib.CTFDeserializer(ctfFilePath, streams);
+            MinibatchSourceConfig MBconfig_train = new MinibatchSourceConfig(new List<CNTKDictionary> { deserializerConfig_train })
+            {
+                MaxSweeps = 1000,
+                randomizationWindowInChunks = 0,
+                randomizationWindowInSamples = 100000,
+            };
+
+
+            var MBsource_train = CNTK.CNTKLib.CreateCompositeMinibatchSource(MBconfig_train);
+
+            var featureStreamInfo_train = MBsource_train.StreamInfo(featureStreamName);
+            var labelStreamInfo_train = MBsource_train.StreamInfo(labelsStreamName);
+
+            var nextBatch_train = MBsource_train.GetNextMinibatch(1, device);
+
+            var MBdensefeature_train = nextBatch_train[featureStreamInfo_train].data;
+            var MBdenseLabel_train = nextBatch_train[labelStreamInfo_train].data.GetDenseData<float>(label_fromModel);
+
 
             //Variable feature = modelOut.Arguments[0];
             //Variable label = Variable.InputVariable(new int[] { numOutputClasses }, DataType.Float);
@@ -66,36 +90,29 @@ namespace console
 
             // prepare the training data
             
-            var featureStreamInfo = minibatchSource_train.StreamInfo(featureStreamName);
-            var labelStreamInfo = minibatchSource_train.StreamInfo(labelsStreamName);
+            //var featureStreamInfo = minibatchSource_train.StreamInfo(featureStreamName);
+            //var labelStreamInfo = minibatchSource_train.StreamInfo(labelsStreamName);
 
-            var minibatchData = minibatchSource_train.GetNextMinibatch((uint)batchSize, device);
+            //var minibatchData = minibatchSource_train.GetNextMinibatch((uint)batchSize, device);
 
             
             //input
             Variable inputVar = modelOut.Arguments.Single();
 
             var inputDataMap = new Dictionary<Variable, Value>();
-            var inputVal = Value.CreateBatch(new NDShape(1, inputDim),  , device);
-            inputDataMap.Add(inputVar, inputVal);
+            inputDataMap.Add(inputVar, MBdensefeature_train);
 
-            
+
             //output
             var outputDataMap = new Dictionary<Variable, Value>();
             Variable outputVar = modelOut.Output;
             outputDataMap.Add(outputVar, null);
-            
-
-
-
-
-
 
 
             // evaluate with loaded data
             modelOut.Evaluate(inputDataMap, outputDataMap,  device);
 
-
+            var outputData = outputDataMap[outputVar].GetDenseData<float>(outputVar);
 
 
             //var loss = CNTKLib.CrossEntropyWithSoftmax(classifierOutput, labelVariable);
