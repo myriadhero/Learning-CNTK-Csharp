@@ -13,14 +13,18 @@ namespace console
             var device = DeviceDescriptor.CPUDevice;
 
 
-            int numOutputClasses = 2;
-            int inputDim = 6000;
-            int batchSize = 20; // not sure how to make this increase to 100% of the file, for now
+            int numOutputClasses = 2; // need to know these from the start
+            uint inputDim = 6000;   // also these
+            uint batchSize = 50; // not sure how to make this increase to 100% of the file, for now
 
             // full path works "C:\\...
+            //string CurrentFolder = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            //string dataPath_test = "Data\\YXFFData6001Test.txt";
+            //string dataPath = Path.Combine(CurrentFolder, dataPath_test);
+
             string dataPath_model = "C:\\Users\\ITRI\\Documents\\Programming\\Csharp\\Learning_CNTK\\Data\\mModelZ1.dnn";
             string dataPath_train = "C:\\Users\\ITRI\\Documents\\Programming\\Csharp\\Learning_CNTK\\Data\\YXFFData6001Train.txt";
-            string dataPath_test = "C:\\Users\\ITRI\\Documents\\Programming\\Csharp\\Learning_CNTK\\Data\\YXFFData6001Test.txt";
+            
 
             // load saved model
             Function model = Function.Load(dataPath_model, device);
@@ -62,7 +66,7 @@ namespace console
             var featureStreamInfo_train = MBsource_train.StreamInfo(featureStreamName);
             var labelStreamInfo_train = MBsource_train.StreamInfo(labelsStreamName);
 
-            var nextBatch_train = MBsource_train.GetNextMinibatch(1, device);
+            var nextBatch_train = MBsource_train.GetNextMinibatch(batchSize, device);
 
             var MBdensefeature_train = nextBatch_train[featureStreamInfo_train].data;
             var MBdenseLabel_train = nextBatch_train[labelStreamInfo_train].data.GetDenseData<float>(label_fromModel);
@@ -114,11 +118,32 @@ namespace console
 
             var outputData = outputDataMap[outputVar].GetDenseData<float>(outputVar);
 
-
+            var actualLabels = outputData.Select((IList<float> l) => l.IndexOf(l.Max())).ToList();
             //var loss = CNTKLib.CrossEntropyWithSoftmax(classifierOutput, labelVariable);
             //var evalError = CNTKLib.ClassificationError(classifierOutput, labelVariable);
+            IList<int> expectedLabels = MBdenseLabel_train.Select(l => l.IndexOf(1.0F)).ToList();
 
-            Console.Write(" ");
+            int misMatches = actualLabels.Zip(expectedLabels, (a, b) => a.Equals(b) ? 0 : 1).Sum();
+
+            int labelsLength = actualLabels.Count;
+
+            string correctness(bool comparison){
+                if (comparison) return "Correct prediction";
+                else return "Incorrect prediction";
+            }
+
+            for(int i = 0; i< labelsLength; i++){
+                Console.WriteLine($"{i+1}.\tPredicted value:  {actualLabels[i]};\tExpected value:  {expectedLabels[i]};\t{correctness(actualLabels[i] == expectedLabels[i])}.");
+
+            }
+
+            Console.WriteLine($"Validating Model: Total Samples = {batchSize}, Misclassify Count = {misMatches}.");
+
+
+
+
+
+            Console.Write("Success");
 
         }
     }
